@@ -5,6 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 // import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Grid } from '@material-ui/core'
 
 const useStyles = makeStyles({
     root: {
@@ -36,6 +37,17 @@ const BookContent = ({ bookDetails }) => {
                         {bookDetails.content}
                     </Typography>
                 </CardContent>
+                <Grid className={classes.container}
+                    container
+                    alignItems='stretch'
+                    spacing={3} style={{ backgroundColor: 'grey', color: 'white', marginBottom: '10px' }}>
+                    {bookDetails?.items?.map((book) => (
+                        <Grid key={book.id} item xs>
+                            <BookContent bookDetails={book} />
+                        </Grid>
+                    ))
+                    }
+                </Grid>
             </Card>
         </div>
     )

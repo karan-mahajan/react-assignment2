@@ -3,6 +3,7 @@ import useStyles from './BookStyles';
 import { Card, CardMedia, Typography, Button, CardActions } from '@material-ui/core';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import pic1 from '../images/pic1.jpeg'
 // import { CircularProgress } from '@material-ui/core';
 // import BookDetails from './Pages/BookDetails';
 
@@ -18,7 +19,7 @@ const Book = ({ book }) => {
     return (
         <>
             <Card className={classes.card}>
-                <CardMedia className={classes.media} image={book.imageLink} title={book.title} />
+                <CardMedia className={classes.media} image={pic1} title={book.title} />
                 <div className={classes.overlay}>
                     <Typography variant='h5'>{book.title}</Typography>
                 </div>

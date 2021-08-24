@@ -1,16 +1,15 @@
-import React from 'react'
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { Container, AppBar, Typography } from '@material-ui/core'
+import { Container, AppBar, Typography, Card, CardMedia, Grid } from '@material-ui/core'
 import useStyles from '../../styles';
 import book from '../../images/book.jpg';
 import BookContent from '../BookContent';
-import { Card, CardMedia, Grid } from '@material-ui/core';
 import { useLocation } from 'react-router-dom';
 
 const BookDetails = () => {
     const [bookDetails, setBookDetails] = useState([]);
     const { pathname } = useLocation();
+    console.log("bookDetails", bookDetails.title);
     const classes = useStyles();
     axios.interceptors.request.use(
         config => {
@@ -38,24 +37,24 @@ const BookDetails = () => {
     }, [getBooks]);
 
     return (
-        <Container maxWidth='lg'>
+        <Container maxWidth='xl'>
             <AppBar className={classes.appBar} position='static' color='inherit'>
-                <Typography className={classes.heading} variant='h2' align='center'>Book</Typography>
+                <Typography className={classes.heading} variant='h2' align='center'>Book Detail</Typography>
                 <img className={classes.image} src={book} alt='memories' height='60' />
             </AppBar>
             <Grid className={classes.container}
                 container
                 alignItems='stretch'
-                spacing={3}>
+                spacing={3} style={{ backgroundColor: 'black', color: 'white' }}>
                 <Grid key={bookDetails.id} item xs={12} sm={6}>
                     <Card className={classes.card}>
                         <CardMedia className={classes.media} image={bookDetails.imageLink} title={book.title} />
-                        <div className={classes.overlay}>
-                            <Typography variant='h5'>{bookDetails.title}</Typography>
+                        <div className={classes.overlay} style={{ backgroundColor: 'red', color: 'white' }}>
+                            <Typography variant='h5'>Title: {bookDetails.title}</Typography>
                         </div>
                         <div className={classes.overlay2}>
                         </div>
-                        <Typography className={classes.title} variant='h6' gutterBottom>{bookDetails.author}</Typography>
+                        <Typography className={classes.title} variant='h6' gutterBottom>Author: {bookDetails.author}</Typography>
                     </Card>
                 </Grid>
                 {bookDetails.content?.map((book) => (
