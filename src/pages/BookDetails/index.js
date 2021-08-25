@@ -1,13 +1,33 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { Container, AppBar, Typography, Card, CardMedia, Grid, CircularProgress } from '@material-ui/core'
-import useStyles from '../../styles';
+import { Container, AppBar, Typography, Card, CardMedia, Grid, CircularProgress, makeStyles } from '@material-ui/core'
 import book from '../../images/book.jpg';
-import BookContent from '../BookContent';
+import BookContent from '../../components/BookContent';
 import { useLocation } from 'react-router-dom';
-// import Divider from '@material-ui/core/Divider';
 
-const BookDetails = () => {
+const useStyles = makeStyles((theme) => ({
+    appBar: {
+        borderRadius: 15,
+        margin: '30px 0',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    heading: {
+        color: 'rgba(0,183,255, 1)',
+    },
+    image: {
+        marginLeft: '15px',
+    },
+    [theme.breakpoints.down('sm')]: {
+        mainContainer: {
+            flexDirection: 'column-reverse',
+        }
+    }
+}));
+
+export default function BookDetails() {
     const [bookDetails, setBookDetails] = useState([]);
     const { pathname } = useLocation();
     const classes = useStyles();
@@ -65,5 +85,3 @@ const BookDetails = () => {
         </Container>
     )
 }
-
-export default BookDetails

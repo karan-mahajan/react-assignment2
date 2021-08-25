@@ -14,20 +14,10 @@ const Search = ({ books, originalBooks, setBooks }) => {
     const classes = useStyles();
     const filterBooks = (e) => {
         let value = e.target.value;
-        // const ab = originalBooks.map((book) => {
-        //     if (book.title.indexOf(value) > -1) {
-        //         return book;
-        //     }
-        //     return '';
-        // })
         const newBooks = originalBooks.filter((book) => book?.title.includes(value));
         if (newBooks?.length > 0) {
             setBooks(newBooks);
         }
-        // else {
-        //     // setBooks(originalBooks);
-        //     setBooks(newBooks);
-        // }
     }
     return (
         <form className={classes.root} noValidate autoComplete="off" style={{ backgroundColor: 'white', marginBottom: '20px' }}>

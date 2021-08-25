@@ -1,37 +1,98 @@
 import { React } from 'react';
-import useStyles from './BookStyles';
-import { Card, CardMedia, Typography, Button, CardActions } from '@material-ui/core';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import pic1 from '../images/pic1.jpeg'
-// import { CircularProgress } from '@material-ui/core';
-// import BookDetails from './Pages/BookDetails';
+import { makeStyles, Typography } from '@material-ui/core';
+// import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+import bookbg from '../images/bookbg.jpg'
+
+const useStyles = makeStyles({
+    media: {
+        height: 0,
+        paddingTop: '56.25%',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundBlendMode: 'darken',
+    },
+    border: {
+        border: 'solid',
+    },
+    fullHeightCard: {
+        height: '100%',
+    },
+    card: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        borderRadius: '15px',
+        height: '100%',
+        position: 'relative',
+    },
+    overlay: {
+        position: 'absolute',
+        top: '20px',
+        left: '20px',
+        color: 'white',
+    },
+    overlay2: {
+        position: 'absolute',
+        top: '20px',
+        right: '20px',
+        color: 'white',
+    },
+    grid: {
+        display: 'flex',
+    },
+    details: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        margin: '20px',
+    },
+    title: {
+        color: 'white',
+        marginTop: '15px',
+        marginBottom: '15px'
+    },
+    cardActions: {
+        padding: '0 16px 8px 16px',
+        display: 'flex',
+        justifyContent: 'space-between',
+    },
+    mainContainer: {
+        display: 'grid',
+        gridTemplateColumns: '1fr 200px',
+        border: '1px solid black',
+        justifyItems: 'start'
+    },
+    image: {
+        height: '100%',
+        width: 350
+    }
+})
 
 const Book = ({ book }) => {
     const classes = useStyles();
     // const [bookId, setBookId] = useState(0);
+    const history = useHistory();
 
-    const bookDTL = async () => {
-        // setBookId(book.id);
-        const result = await axios.get(`https://assignment.api.staging.monomi.lt/v1/books/${book.id}`);
-        console.log('Book', result);
+    // const bookDTL = async () => {
+    //     // setBookId(book.id);
+    //     const result = await axios.get(`https://assignment.api.staging.monomi.lt/v1/books/${book.id}`);
+    //     console.log('Book', result);
+    // }
+
+    const navigate = () => {
+        history.push(`/${book.id}`);
     }
     return (
         <>
-            <Card className={classes.card}>
-                <CardMedia className={classes.media} image={pic1} title={book.title} />
-                <div className={classes.overlay}>
-                    <Typography variant='h5'>{book.title}</Typography>
+
+            <div className={classes.mainContainer}>
+                <div onClick={navigate} style={{ cursor: 'pointer' }}>
+                    <img className={classes.image} src={bookbg} alt='Book' />
                 </div>
-                <div className={classes.overlay2}>
+                <div>
+                    <Typography className={classes.title} variant='body1'>{book.title}</Typography>
+                    <Typography className={classes.title} variant='h6'>{book.author}</Typography>
                 </div>
-                <Typography className={classes.title} variant='h6' gutterBottom>{book.author}</Typography>
-                <CardActions className={classes.CardActions}>
-                    <Button size='medium' color='secondary' onClick={bookDTL}>
-                        <Link to={`/${book.id}`}>Book Details</Link>
-                    </Button>
-                </CardActions>
-            </Card>
+            </div>
         </>
     )
 }

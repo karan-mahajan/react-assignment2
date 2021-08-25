@@ -1,23 +1,33 @@
 import React from 'react'
-import useStyles from './ContainerStyles';
-import { CircularProgress, Grid } from '@material-ui/core';
-import Book from './Book'
+import { CircularProgress, makeStyles } from '@material-ui/core';
+import Book from './Book';
+
+const useStyles = makeStyles((theme) => ({
+    container: {
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr 1fr',
+        gridColumnGap: 25,
+        gridRowGap: 50,
+    },
+    smMargin: {
+        margin: theme.spacing(1),
+    },
+    actionDiv: {
+        textAlign: 'center',
+    },
+}));
+
 
 const BookContainer = ({ books }) => {
     const classes = useStyles();
     return (
         !books?.length ? <CircularProgress /> : (
-            <Grid className={classes.container}
-                container
-                alignItems='stretch'
-                spacing={3}>
+            <div className={classes.container}>
                 {books?.map((book) => (
-                    <Grid key={book.id} item xs={10} sm={3}>
-                        <Book book={book} />
-                    </Grid>
+                    <Book book={book} key={book.id} />
                 ))
                 }
-            </Grid >)
+            </div >)
     )
 }
 

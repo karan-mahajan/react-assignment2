@@ -1,11 +1,32 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import BookContainer from '../BookContainer';
-import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core'
-import useStyles from '../../styles';
+import BookContainer from '../../components/BookContainer';
+import { AppBar, Typography, makeStyles } from '@material-ui/core'
 import book from '../../images/book.jpg';
-import Search from '../Search';
+import Search from '../../components/Search';
+
+const useStyles = makeStyles((theme) => ({
+    appBar: {
+        borderRadius: 15,
+        margin: '30px 0',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    heading: {
+        color: 'rgba(0,183,255, 1)',
+    },
+    image: {
+        marginLeft: '15px',
+    },
+    [theme.breakpoints.down('sm')]: {
+        mainContainer: {
+            flexDirection: 'column-reverse',
+        }
+    }
+}));
 
 export default function Home() {
     const [books, setBooks] = useState([]);
@@ -33,24 +54,17 @@ export default function Home() {
     useEffect(() => {
         getBooks();
     }, []);
+
     return (
         <>
-            <Container maxWidth='xl' style={{ color: 'white', paddingTop: '10px' }}>
+            <div style={{ padding: 0, margin: 50 }}>
                 <AppBar className={classes.appBar} position='static' color='inherit' >
                     <Typography className={classes.heading} variant='h2' align='center'>Books</Typography>
                     <img className={classes.image} src={book} alt='Books' height='60' />
                 </AppBar>
                 <Search books={books} originalBooks={originalBooks} setBooks={setBooks} />
-                <Grow in>
-                    <Container>
-                        <Grid className={classes.mainContainer} container justify='space-between' alignItems='stretch' spacing={3}>
-                            <Grid item xs>
-                                <BookContainer books={books} />
-                            </Grid>
-                        </Grid>
-                    </Container>
-                </Grow>
-            </Container>
+                <BookContainer books={books} />
+            </div>
         </>
     )
 }

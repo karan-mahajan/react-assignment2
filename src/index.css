@@ -1,6 +1,7 @@
 body {
   background-color: #ffffff;
-  background-image: url("./images/bookbg.jpg");
+  /* background-image: url("./images/bookbg.jpg"); */
+  background-image: linear-gradient(to right, #42271f 0, #943c52 100%);
 }
 
 .navbar-region {
