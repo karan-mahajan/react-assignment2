@@ -1,3 +1,52 @@
 body {
   background-color: #ffffff;
+  background-image: url("./images/bookbg.jpg");
+}
+
+.navbar-region {
+  background-image: linear-gradient(to right, #ff7854 0, #ff5079 100%);
+  background-repeat: repeat-x;
+  box-sizing: border-box;
+  color: rgb(51, 51, 51);
+  display: block;
+  filter: none;
+  font-family: helvetica;
+  font-size: 14px;
+  height: 93px;
+  line-height: 20px;
+  text-size-adjust: 100%;
+  width: 943px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.container {
+  box-sizing: border-box;
+  color: rgb(51, 51, 51);
+  display: block;
+  font-family: helvetica;
+  font-size: 14px;
+  height: 93px;
+  line-height: 20px;
+  margin-left: 96.5px;
+  margin-right: 96.5px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  text-size-adjust: 100%;
+  width: 750px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.region {
+  box-sizing: border-box;
+  color: rgb(51, 51, 51);
+  display: block;
+  font-family: helvetica;
+  font-size: 14px;
+  height: 0px;
+  line-height: 20px;
+  text-size-adjust: 100%;
+  width: 720px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }

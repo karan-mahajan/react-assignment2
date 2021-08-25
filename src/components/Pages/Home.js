@@ -34,21 +34,23 @@ export default function Home() {
         getBooks();
     }, []);
     return (
-        <Container maxWidth='xl' style={{ color: 'white', paddingTop: '10px' }}>
-            <AppBar className={classes.appBar} position='static' color='inherit'>
-                <Typography className={classes.heading} variant='h2' align='center'>Books</Typography>
-                <img className={classes.image} src={book} alt='memories' height='60' />
-            </AppBar>
-            <Search books={books} originalBooks={originalBooks} setBooks={setBooks} />
-            <Grow in>
-                <Container>
-                    <Grid className={classes.mainContainer} container justify='space-between' alignItems='stretch' spacing={3}>
-                        <Grid item xs>
-                            <BookContainer books={books} />
+        <>
+            <Container maxWidth='xl' style={{ color: 'white', paddingTop: '10px' }}>
+                <AppBar className={classes.appBar} position='static' color='inherit' >
+                    <Typography className={classes.heading} variant='h2' align='center'>Books</Typography>
+                    <img className={classes.image} src={book} alt='Books' height='60' />
+                </AppBar>
+                <Search books={books} originalBooks={originalBooks} setBooks={setBooks} />
+                <Grow in>
+                    <Container>
+                        <Grid className={classes.mainContainer} container justify='space-between' alignItems='stretch' spacing={3}>
+                            <Grid item xs>
+                                <BookContainer books={books} />
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </Container>
-            </Grow>
-        </Container>
+                    </Container>
+                </Grow>
+            </Container>
+        </>
     )
 }
